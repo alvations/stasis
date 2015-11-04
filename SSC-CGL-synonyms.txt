@@ -1,0 +1,95 @@
+# A
+Abandon : Leave, forsake
+Abridge : Shorten, curtail
+Abundant : Plentiful
+# B
+Behaviour : Demeanour
+Bias : Predilection
+Brutal : Savage, cruel
+# C
+Callous : Hard, cruel
+Calm : Quiet, tranquil
+Casual : Uncertain
+# D
+Damage : Loss, harm, injury
+Decorate : Adron, embellish
+Deformity : Malformation, disfigurement
+# E
+Earnest : Serious, solemn
+Emergency : Exigency
+Exceptional : Unusual, rare
+# F
+False : Untrue, spurious
+Fascinate : Charm, enchant
+Ferocious : Fierce, savage
+# G
+Geniune : Real
+Gigantic : Colossal, great
+Guilt : Sin, crime
+# H
+Haughty : Arrogant, proud
+Hazardous : Dangerous, risky, perilous
+Humility : Modesty, politeness
+# I
+Illiterate : Unlearned, ignorant
+Imperious : Authoritative, dictatorial
+Impertinent : Impudent, insolent, shameless
+# J
+Jolly : Jovial, merry
+Judicious : Discreet, prudent
+# K
+Knavery : Fraud
+# L
+Laborious : Assiduous, industrious
+Lament : Grieve, mourn
+Lethargy : Sluggishness
+# M
+Magnificent : Splendid, grand
+Marvellous : Wonderful
+Meagre : Small
+# N
+Nice : Pleasant, agreeable
+Notable : Remarkable, memorable
+Notorious : Infamous
+# O
+Obliterate : Destory, efface
+Obsolete : Antiquated
+Opportune : Timely
+# P
+Pensive : Thoughtful
+Perennial : Permanent, perpetual
+Persuade : Induce, urge
+# Q
+Quaint : Queer, odd, singular
+Queer : Strange, odd
+Questionable : Doubtful
+# R
+Radiant : Bright, brilliant
+Refined : Elegant
+Rejoice : Delight
+# S
+Sacred : Holy, consecrated, pious
+Satiate : Satisfy
+Scanty : Slender, meagre
+# T
+Talkative : Garrulous
+Temperate : Moderate
+Thankful : Grateful, obliged
+# U
+Ugly : Repulsive
+Urbane : Polite, courteous, suave
+Urge : Press, incite
+# V
+Vacillatge : Waver
+Venerable : Respectable
+Vigilance : Watchfulness
+#
+Wealthy : Rich
+Wickedness : Evil
+Wild : Savage
+# Y
+Yield : Surrender
+Yielding : Submissive
+# Z
+Zeal : Passion
+Zenith : Top, summit
