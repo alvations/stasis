@@ -50,10 +50,13 @@ def create_allinone_csv_file():
             with io.open(inputfile, 'r') as infile, io.open(goldstandard, 'r') as goldfile:
                 for line, score in zip(infile, goldfile):
                     left, right = line.strip().split('\t')
+                    left = left.replace('\t', ' ')
+                    right = right.replace('\t', ' ')
                     left = re.sub(' +',' ', left)
                     right = re.sub(' +',' ', right)
+                    
                     score = score.strip()
-                    outline = "\t".join([dataset[:-1], domain, score, left, right])
+                    outline = "\t".join([dataset[:-1], domain, score, left, right]).strip()
                     fout.write(unicode(outline)+'\n')
 
 create_allinone_csv_file()
