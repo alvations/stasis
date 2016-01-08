@@ -1,4 +1,4 @@
-
+MWA_Id	MWA_Word
 [[2, 6], [3, 7], [5, 9], [6, 10]]	[['one', 'one'], ['language', 'language'], ['another', 'another'], ['language', 'language']]
 [[5, 7], [4, 6], [1, 4]]	[['interests', 'interests'], ['shared', 'common'], ['nations', 'nations']]
 [[11, 10], [13, 7]]	[['heat', 'heat'], ['chemical', 'chemical']]
