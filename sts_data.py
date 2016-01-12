@@ -38,6 +38,13 @@ ALL_STS_DATA = {'STS2012-train/':STS2012_TRAIN,'STS2012-gold/':STS2012_GOLD,
                 'STS2013-gold/':STS2013_GOLD, 'STS2014-gold/':STS2014_GOLD,
                 'STS2015-gold/':STS2015_GOLD}
 
+def clean(text):
+    text = text.replace(u"�", "e").replace(u'”', '"').replace(u'“', '')
+    text = text.replace(u"\x92", "'").replace(u"\x91", "").replace(u"\x93", "").replace(u"\x94", "").replace(u"\x95", "")
+    text = text.replace(u"‚Äôs", "'s").replace(u"Äė", "").replace(u"‚Äė", "").replace(u"‚Äô", "").replace(u"‚Äď", "").replace(u"‚ā¨", "").replace(u"‚ÄĒ", "")
+    text = text.replace(u"😢🐶", "")
+    return text
+
 def create_allinone_csv_file():
     fout = io.open('sts.csv', 'w')
     headerline = "\t".join(['Dataset', 'Domain', 'Score', 'Sent1', 'Sent2'])
@@ -57,6 +64,29 @@ def create_allinone_csv_file():
                     
                     score = score.strip()
                     outline = "\t".join([dataset[:-1], domain, score, left, right]).strip()
+
                     fout.write(unicode(outline)+'\n')
 
 create_allinone_csv_file()
+
+
+"""
+# Asiya
+nohup $ASIYA_HOME/bin/Asiya.pl -eval single -g seg -m NGRAM-cosChar2ngrams,NGRAM-cosChar3ngrams,NGRAM-cosChar4ngrams,NGRAM-cosChar5ngrams,NGRAM-cosTok2ngrams,NGRAM-cosTok3ngrams,NGRAM-cosTok4ngrams,NGRAM-cosTok5ngrams,NGRAM-jacChar2ngrams,NGRAM-jacChar3ngrams,NGRAM-jacChar4ngrams,NGRAM-jacChar5ngrams,NGRAM-jacCognates,NGRAM-jacTok2ngrams,NGRAM-jacTok3ngrams,NGRAM-jacTok4ngrams,NGRAM-jacTok5ngrams,NGRAM-lenratio assiya.config > ass.ngram.out &
+
+nohup $ASIYA_HOME/bin/Asiya.pl -eval single -g seg -m "SP-Oc(*),SP-Oc(ADJP),SP-Oc(ADVP),SP-Oc(CONJP),SP-Oc(INTJ),SP-Oc(LST),SP-Oc(NP),SP-Oc(O),SP-Oc(PP),SP-Oc(PRT),SP-Oc(SBAR),SP-Oc(UCP),SP-Oc(VP),SP-cNIST,SP-cNIST-1,SP-cNIST-2,SP-cNIST-3,SP-cNIST-4,SP-cNIST-5,SP-cNISTi-2,SP-cNISTi-3,SP-cNISTi-4,SP-cNISTi-5,SP-iobNIST,SP-iobNIST-1,SP-iobNIST-2,SP-iobNIST-3,SP-iobNIST-4,SP-iobNIST-5,SP-iobNISTi-2,SP-iobNISTi-3,SP-iobNISTi-4,SP-iobNISTi-5,SP-lNIST,SP-lNIST-1,SP-lNIST-2,SP-lNIST-3,SP-lNIST-4,SP-lNIST-5,SP-lNISTi-2,SP-lNISTi-3,SP-lNISTi-4,SP-lNISTi-5,SP-pNIST,SP-pNIST-1,SP-pNIST-2,SP-pNIST-3,SP-pNIST-4,SP-pNIST-5,SP-pNISTi-2,SP-pNISTi-3,SP-pNISTi-4,SP-pNISTi-5" assiya.config > ass.sp.out &
+
+nohup $ASIYA_HOME/bin/Asiya.pl -eval single -g seg -m "NE-Me(*),NE-Me(ANGLE_QUANTITY),NE-Me(DATE),NE-Me(DISTANCE_QUANTITY),NE-Me(LANGUAGE),NE-Me(LOC),NE-Me(MEASURE),NE-Me(METHOD),NE-Me(MISC),NE-Me(MONEY),NE-Me(NUM),NE-Me(ORG),NE-Me(PER),NE-Me(PERCENT),NE-Me(PROJECT),NE-Me(SIZE_QUANTITY),NE-Me(SPEED_QUANTITY),NE-Me(SYSTEM),NE-Me(TEMPERATURE_QUANTITY),NE-Me(TIME),NE-Me(WEIGHT_QUANTITY),NE-Oe(*),NE-Oe(**),NE-Oe(ANGLE_QUANTITY),NE-Oe(DATE),NE-Oe(DISTANCE_QUANTITY),NE-Oe(LANGUAGE),NE-Oe(LOC),NE-Oe(MEASURE),NE-Oe(METHOD),NE-Oe(MISC),NE-Oe(MONEY),NE-Oe(NUM),NE-Oe(O),NE-Oe(ORG),NE-Oe(PER),NE-Oe(PERCENT),NE-Oe(PROJECT),NE-Oe(SIZE_QUANTITY),NE-Oe(SPEED_QUANTITY),NE-Oe(SYSTEM),NE-Oe(TEMPERATURE_QUANTITY),NE-Oe(TIME),NE-Oe(WEIGHT_QUANTITY)" assiya.config > ass.ne.out &
+
+# Meteor
+java -jar meteor-1.5.jar left right -norm > meteor-all.out
+java -jar meteor-1.5.jar left right -norm -writeAlignments -f sts
+java -jar meteor-1.5.jar left right -norm -m exact > meteor-exact.out
+java -jar meteor-1.5.jar left right -norm -m stem > meteor-stem.out
+java -jar meteor-1.5.jar left right -norm -m synonym > meteor-synonym.out
+java -jar meteor-1.5.jar left right -norm -m paraphrase > meteor-paraphrase.out
+
+# BEER
+./beer -l en -s left -r right --norm --printSentScores > beer-norm.out
+
+"""
