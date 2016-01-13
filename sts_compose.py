@@ -43,7 +43,12 @@ def sent_vector(words, embeddings):
 def cosine(v1, v2):
     v1_abs = math.sqrt(np.dot(v1, v1))
     v2_abs = math.sqrt(np.dot(v2, v2))
-    return np.dot(v1, v2) / (v1_abs * v2_abs)   
+    cosine_output = np.dot(v1, v2) / (v1_abs * v2_abs)   
+    #print type(cosine_output)
+    if type(cosine_output) == np.float64:
+        return cosine_output
+    else:
+        return -1.0
 
 
 compose_gzip = ['EN-wform.w.5.cbow.neg10.400.subsmpl.txt',
@@ -57,18 +62,20 @@ compose_cbow = get_embeddings(compose_gzip[0], 400)
 print "Embeddings loaded, took:", time.time() - estart
 
 
+sent1 = sts['Sent1']
 sent1_lemmatized = sts['Sent1_lemmatized']
 sent2_lemmatized = sts['Sent2_lemmatized']
-sts = None
+#sts = None
 
-fout = open('sts_DLS_cbow.csv', 'w')
-fout.write('DLS_compose_ppmi,DLS_compose_cbow'+ '\n')
-for s1, s2 in zip(sent1_lemmatized, sent2_lemmatized):
+fout = open('sts_DLS_compose.csv', 'w')
+fout.write('Sent1\tDLS_compose_ppmi\tDLS_compose_cbow'+ '\n')
+for s1, s2, sent1_str in zip(sent1_lemmatized, sent2_lemmatized, sent1):
     s1 = eval(s1)
     s2 = eval(s2)
     v1 = sent_vector(s1, compose_ppmi)
     v2 = sent_vector(s2, compose_ppmi)
-    fout.write(str(cosine(v1, v2)) + ',')
+    fout.write(sent1_str + '\t')
+    fout.write(str(cosine(v1, v2)) + '\t')
     v1 = sent_vector(s1, compose_cbow)
     v2 = sent_vector(s2, compose_cbow)
     fout.write(str(cosine(v1, v2)) + '\n')
