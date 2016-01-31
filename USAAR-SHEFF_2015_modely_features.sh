@@ -46,3 +46,10 @@ java -jar meteor-1.5.jar left right -norm | awk 'NR > 11 { print }' | cut -f2
 
 ./beer -l en -s left -r right --norm --printSentScores | sed 's/ \+/\t/g' | cut -f4 > beer-norm.out
 
+'
+
+ nohup python takelab_simple_features.py left-right > takelab-feats.txt 2> takelabfeat.log &
+ nohup python takelab_simple_features.py test.txt > test.takelab-feats.txt 2> test.takelabfeat.log &
+ 
+ cat takelab-feats.txt | s/^0.0 //;s/[0-9]\+:\([0-9.]\+\)/\1/g' 
+ cat test.takelab-feats.txt | s/^0.0 //;s/[0-9]\+:\([0-9.]\+\)/\1/g' 
