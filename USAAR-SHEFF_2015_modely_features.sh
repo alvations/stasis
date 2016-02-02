@@ -53,3 +53,5 @@ java -jar meteor-1.5.jar left right -norm | awk 'NR > 11 { print }' | cut -f2
  
  cat takelab-feats.txt | s/^0.0 //;s/[0-9]\+:\([0-9.]\+\)/\1/g' 
  cat test.takelab-feats.txt | s/^0.0 //;s/[0-9]\+:\([0-9.]\+\)/\1/g' 
+
+java -jar meteor-1.5.jar left.test-something right.test-something -norm | sed -e '1,11d' | head -n -22 | cut -f2 > meteor-all.out
