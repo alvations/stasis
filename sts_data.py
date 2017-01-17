@@ -32,11 +32,17 @@ STS2015_GOLD = {'STS.input.answers-forums.txt':'STS.gs.answers-forums.txt',
                 'STS.input.headlines.txt':'STS.gs.headlines.txt',
                 'STS.input.belief.txt':'STS.gs.belief.txt'}
 
+STS2016_GOLD = {'STS2016.input.answer-answer.txt': 'STS2016.gs.answer-answer.txt',
+                'STS2016.input.headlines.txt': 'STS2016.gs.headlines.txt',
+                'STS2016.input.plagiarism.txt': 'STS2016.gs.plagiarism.txt',
+                'STS2016.input.postediting.txt': 'STS2016.gs.postediting.txt',
+                'STS2016.input.question-question.txt': 'STS2016.gs.question-question.txt' }
+
 
 STS_DATA_DIR = 'STS-data/'
 ALL_STS_DATA = {'STS2012-train/':STS2012_TRAIN,'STS2012-gold/':STS2012_GOLD,
                 'STS2013-gold/':STS2013_GOLD, 'STS2014-gold/':STS2014_GOLD,
-                'STS2015-gold/':STS2015_GOLD}
+                'STS2015-gold/':STS2015_GOLD, 'STS2016-gold/':STS2016_GOLD}
 
 def clean(text):
     text = text.replace(u"�", "e").replace(u'”', '"').replace(u'“', '')
@@ -56,12 +62,15 @@ def create_allinone_csv_file():
             domain = ".".join(inputfile.split('.')[2:-1])
             with io.open(inputfile, 'r') as infile, io.open(goldstandard, 'r') as goldfile:
                 for line, score in zip(infile, goldfile):
-                    left, right = line.strip().split('\t')
+                    if dataset in ['STS2016-gold/']:
+                        left, right, left_source, right_source = line.strip().split('\t')
+                    else:
+                        left, right = line.strip().split('\t')
                     left = left.replace('\t', ' ')
                     right = right.replace('\t', ' ')
                     left = re.sub(' +',' ', left)
                     right = re.sub(' +',' ', right)
-                    
+
                     score = score.strip()
                     outline = "\t".join([dataset[:-1], domain, score, left, right]).strip()
 
